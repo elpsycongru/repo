@@ -1,0 +1,102 @@
+version: 1.0.0
+
+# GO SDK使用的客户端部分。
+client:
+  # 客户端所属的组织，必须是organizations定义的组织
+  organization: ORG1
+  # 日志级别
+  logging:
+    level: info
+  # MSP证书的根路径
+  cryptoconfig:
+    path: /network/crypto-config
+#    path: /network/crypto-config
+
+#静态配置替换网络主机名
+
+# 通道定义
+channels:
+  appchannel:
+    orderers:
+      - orderer.carunion.com
+    peers:
+      peer0.org1.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+      peer1.org1.com:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+# 组织配置
+organizations:
+  ORG1:
+    mspid: "ORG1MSP"
+    cryptoPath: peerOrganizations/org1.com/users/Admin@org1.com/msp
+    peers:
+      - peer0.org1.com
+      - peer1.org1.com
+    #users:
+    #  Admin:
+    #    cert:
+    #      path: /network/crypto-config/peerOrganizations/myorg.com/users/Admin@myorg.com/msp/signcerts/Admin@myorg.com-cert.pem
+    #    key:
+    #      path: /network/crypto-config/peerOrganizations/myorg.com/users/Admin@myorg.com/msp/keystore/6d746c723816ba8b7871f4f4011c57219efa2a9cbebb6f82243d436bbb097d8a_sk
+# orderer节点列表
+orderers:
+  orderer.carunion.com:
+    url: orderer.carunion.com:7050
+    # 传递给gRPC客户端构造函数
+    grpcOptions:
+      ssl-target-name-override: orderer.carunion.com
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+
+# peers节点列表
+peers:
+  # peer节点定义，可以定义多个
+  peer0.org1.com:
+    # URL用于发送背书和查询请求
+    url: peer0.org1.com:7051
+    # 传递给gRPC客户端构造函数
+    grpcOptions:
+      ssl-target-name-override: peer0.org1.com
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+  peer1.org1.com:
+    url: peer1.org1.com:7051
+    grpcOptions:
+      ssl-target-name-override: peer1.org1.com
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+  peer0.org2.com:
+    url: peer0.org2.com:7051
+    grpcOptions:
+      ssl-target-name-override: peer0.org2.com
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+  peer1.org2.com:
+    url: peer1.org2.com:7051
+    grpcOptions:
+      ssl-target-name-override: peer1.org2.com
+      keep-alive-time: 0s
+      keep-alive-timeout: 20s
+      keep-alive-permit: false
+      fail-fast: false
+      allow-insecure: true
+  

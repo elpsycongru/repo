@@ -1,0 +1,7 @@
+{
+    "serverport": "9090",
+    "redisport": "6379",
+    "python_server_port": "43221",
+    "known_img_dir": "/Users/lichenhui/go/src/github.com/elpsycongru/communication-system-blockchain/tools/facerecognition/faceimg",
+    "unknown_img_dir": "/Users/lichenhui/go/src/github.com/elpsycongru/communication-system-blockchain/tools/facerecognition/ramdisk"
+}

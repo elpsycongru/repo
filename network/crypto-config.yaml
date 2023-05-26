@@ -1,0 +1,20 @@
+OrdererOrgs:
+  - Name: CARUNION
+    Domain: carunion.com
+    Specs:
+      - Hostname: orderer
+    #MSPDir: crypto-config/orderOrganizations/carunion.com/msp
+        
+PeerOrgs:
+  - Name: ORG1
+    Domain: org1.com
+    Template:
+      Count: 2
+    Users:
+      Count: 1
+  - Name: ORG2
+    Domain: org2.com
+    Template:
+      Count: 2
+    Users:
+      Count: 1

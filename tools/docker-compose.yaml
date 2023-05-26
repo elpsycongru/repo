@@ -1,0 +1,20 @@
+version: '2.1'
+
+networks:
+  fabric_network:
+    external: true
+    name: fabric_network
+
+services:
+  face_recognition.app:
+    build: .
+    image: face_recognition:latest
+    container_name: face_recognition.app
+    ports:
+      - "43221:43221"
+    volumes:
+      #- /usr/share/zoneinfo/Asia/Shanghai:/usr/share/zoneinfo/Asia/Shanghai
+      - ./facerecognition:/facerecognition
+
+    networks:
+      - fabric_network
